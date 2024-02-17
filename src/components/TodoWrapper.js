@@ -6,6 +6,7 @@ import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
   const [todos, setTodos] = useState([]);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const addTodo = (todo) => {
     setTodos([
@@ -40,14 +41,30 @@ export const TodoWrapper = () => {
     );
   };
 
+  const showCompletedTodos = () => {
+    setShowCompleted(true);
+  };
+
+  const showIncompleteTodos = () => {
+    setShowCompleted(false);
+  };
+
+
   return (
     <div className="TodoWrapper">
       <h1>Get Things Done !</h1>
       <TodoForm addTodo={addTodo} />
+       {/* Filter buttons */}
+       <div>
+        <button className="btn-comp" onClick={showCompletedTodos}>Show Completed</button>
+        <button className="btn-inComp" onClick={showIncompleteTodos}>Show Incomplete</button>
+      </div>
       {/* display todos */}
-      {todos.map((todo) =>
-        todo.isEditing ? (
-          <EditTodoForm editTodo={editTask} task={todo} />
+      {todos.map((todo) => {
+        if (showCompleted && !todo.completed) return null;
+        if (!showCompleted && todo.completed) return null;
+        return todo.isEditing ? (
+          <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
         ) : (
           <Todo
             key={todo.id}
@@ -56,8 +73,8 @@ export const TodoWrapper = () => {
             editTodo={editTodo}
             toggleComplete={toggleComplete}
           />
-        )
-      )}
+        );
+      })}
     </div>
   );
 };

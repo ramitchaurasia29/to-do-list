@@ -89,4 +89,29 @@ h1 {
 .delete-icon {
   cursor: pointer;
 }
+
+.btn-comp {
+  background: rgb(14, 182, 14);
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+  margin: 10px;
+}
+.btn-comp:hover {
+  background: rgb(95, 185, 95);
+}
+ 
+.btn-inComp {
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+  margin: 10px;
+}
+.btn-inComp:hover {
+  background: rgb(254, 81, 81);
+}
+
  
